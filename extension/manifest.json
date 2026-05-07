@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Verify Your Cart - AI Scanner",
+  "version": "1.0",
+  "description": "Instantly verify e-commerce products with AI. Bypasses all CAPTCHAs.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://*/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Verify Product Safety"
+  }
+}

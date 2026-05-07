@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { 
+      width: 320px; 
+      padding: 20px; 
+      font-family: 'Inter', sans-serif; 
+      text-align: center;
+      background: #0B0F19; /* Cybersecurity dark theme */
+      color: #F9FAFB;
+      margin: 0;
+    }
+    h2 { margin-top: 0; font-size: 1.25rem; }
+    button { 
+      background: linear-gradient(90deg, #3B82F6, #06B6D4);
+      color: white; 
+      border: none; 
+      padding: 12px 24px; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-weight: bold; 
+      width: 100%; 
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.9; }
+    #result { 
+      margin-top: 20px; 
+      font-weight: 500; 
+      background: #1A2235;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #243041;
+      display: none;
+    }
+    .score { font-size: 2rem; font-weight: 800; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h2>🛒 Verify Your Cart</h2>
+  <p style="color: #9CA3AF; font-size: 0.85rem; margin-bottom: 20px;">Instantly scan this page for fraud and safety indicators.</p>
+  
+  <button id="scanBtn">Scan Current Page</button>
+  
+  <div id="result">
+    <div id="statusText"></div>
+    <div id="score" class="score"></div>
+    <div id="verdict"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
