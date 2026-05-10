@@ -1,12 +1,27 @@
 {
   "manifest_version": 3,
   "name": "Verify Your Cart - AI Scanner",
-  "version": "1.0",
-  "description": "Instantly verify e-commerce products with AI. Bypasses all CAPTCHAs.",
-  "permissions": ["activeTab", "scripting"],
+  "version": "1.1",
+  "description": "Professional AI-powered e-commerce fraud detection. Automatic verification for Amazon, Flipkart, and Meesho.",
+  "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": ["https://*/*"],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Verify Product Safety"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.amazon.in/*",
+        "https://*.amazon.com/*",
+        "https://*.flipkart.com/*",
+        "https://*.meesho.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "128": "icon128.png"
   }
 }
