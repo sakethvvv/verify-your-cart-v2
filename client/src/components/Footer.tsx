@@ -1,3 +1,4 @@
+"use client";
 import Link from 'next/link';
 import { Send, MessageCircle, Camera, Globe, Shield, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 import CartLogo from './CartLogo';
