@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/',
+      disallow: '/private/',
     },
-    sitemap: 'https://verifyyourcart.com/sitemap.xml',
+    sitemap: 'https://verify-your-cart-v2.vercel.app/sitemap.xml',
   }
 }

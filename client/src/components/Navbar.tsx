@@ -36,8 +36,8 @@ const Navbar = () => {
         height: 'var(--nav-height)',
         zIndex: 1000,
         transition: 'all 0.3s ease',
-        background: scrolled ? 'rgba(3, 7, 18, 0.8)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        background: scrolled ? 'rgba(11, 15, 25, 0.8)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--card-border)' : '1px solid transparent',
         display: 'flex',
         alignItems: 'center'

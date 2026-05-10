@@ -1,21 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-color: #030712;
-  --bg-secondary: #0f172a;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent-blue: #3b82f6;
-  --accent-indigo: #6366f1;
-  --accent-purple: #a855f7;
-  --accent-cyan: #06b6d4;
-  --danger: #ef4444;
-  --warning: #f59e0b;
-  --success: #10b981;
-  --card-bg: rgba(30, 41, 59, 0.5);
-  --card-border: rgba(255, 255, 255, 0.08);
+  --bg-color: #0B0F19;
+  --bg-secondary: #161B26;
+  --text-primary: #E6EDF3;
+  --text-secondary: #8B949E;
+  --accent-blue: #5B8CFF;
+  --accent-green: #00E5A8;
+  --accent-purple: #9D7BFF;
+  --danger: #FF4D6D;
+  --warning: #F59E0B;
+  --success: #00E5A8;
+  --card-bg: rgba(22, 27, 38, 0.7);
+  --card-border: rgba(230, 237, 243, 0.08);
   --nav-height: 80px;
-  --glow-blue: rgba(59, 130, 246, 0.2);
+  --glow-green: rgba(0, 229, 168, 0.15);
 }
 
 * {
@@ -82,7 +81,7 @@ a {
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -112,10 +111,10 @@ a {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
-  color: white;
+  background: var(--accent-green);
+  color: #0B0F19;
   border: none;
-  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+  box-shadow: 0 4px 14px 0 rgba(0, 229, 168, 0.2);
 }
 
 .btn-primary:hover {

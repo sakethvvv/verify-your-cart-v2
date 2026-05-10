@@ -1,41 +1,24 @@
 import { MetadataRoute } from 'next'
 import { blogPosts } from '@/lib/blog-data'
-import { guides } from '@/lib/guides-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://verifyyourcart.com'
+  const baseUrl = 'https://verify-your-cart-v2.vercel.app'
 
-  const blogUrls = blogPosts.map((post) => ({
+  const posts = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
 
-  const guideUrls = guides.map((guide) => ({
-    url: `${baseUrl}/guides/${guide.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
+  const routes = ['', '/blog', '/extension', '/guides', '/about', '/contact', '/privacy-policy', '/terms'].map(
+    (route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: route === '' ? 1 : 0.8,
+    })
+  )
 
-  const staticUrls = [
-    '',
-    '/about',
-    '/contact',
-    '/blog',
-    '/guides',
-    '/privacy-policy',
-    '/terms',
-    '/disclaimer',
-    '/cookies',
-    '/editorial-policy',
-  ].map((url) => ({
-    url: `${baseUrl}${url}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: url === '' ? 1 : 0.5,
-  }))
-
-  return [...staticUrls, ...blogUrls, ...guideUrls]
+  return [...routes, ...posts]
 }
