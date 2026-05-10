@@ -143,8 +143,48 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Detailed Technical Guide */}
+      {/* Scam Radar Section */}
+      <section className="section-padding" style={{ background: 'rgba(239, 68, 68, 0.02)', borderTop: '1px solid rgba(239, 68, 68, 0.05)', borderBottom: '1px solid rgba(239, 68, 68, 0.05)' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'center' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--danger)', marginBottom: '20px' }}>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--danger)', boxShadow: '0 0 10px var(--danger)' }} className="pulse"></div>
+                <span style={{ fontWeight: 800, letterSpacing: '1px' }}>LIVE SCAM RADAR</span>
+              </div>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '24px' }}>Real-time Threat <br />Intelligence</h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '32px' }}>
+                Our engine is constantly crawling the web, identifying new scam patterns and malicious domains before they can target you. Here are the most recent threats neutralized by our platform.
+              </p>
+              <Link href="/blog" className="btn btn-primary">View Global Threat Report</Link>
+            </div>
+            <div className="glass-panel" style={{ padding: '0', overflow: 'hidden' }}>
+              <div style={{ padding: '20px 32px', borderBottom: '1px solid var(--card-border)', background: 'rgba(255,255,255,0.02)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>RECENTLY BLOCKED DOMAINS</span>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Updated: 2m ago</span>
+              </div>
+              <div style={{ padding: '32px' }}>
+                {[
+                  { domain: "ama-zon-prime-deals.net", type: "Phishing", risk: "Critical" },
+                  { domain: "flipkart-lucky-draw.in", type: "Lottery Scam", risk: "High" },
+                  { domain: "best-buy-clearance.cc", type: "Bait & Switch", risk: "Critical" },
+                  { domain: "iphone15-giveaway.today", type: "Data Harvesting", risk: "Medium" }
+                ].map((scam, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', borderBottom: i === 3 ? 'none' : '1px solid var(--card-border)' }}>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--danger)' }}>{scam.domain}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{scam.type}</div>
+                    </div>
+                    <div style={{ padding: '4px 12px', borderRadius: '4px', background: scam.risk === 'Critical' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(245, 158, 11, 0.1)', color: scam.risk === 'Critical' ? 'var(--danger)' : 'var(--warning)', fontSize: '0.75rem', fontWeight: 700 }}>
+                      {scam.risk}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="section-padding" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>

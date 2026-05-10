@@ -20,8 +20,8 @@ const Scanner = () => {
     setResult(null);
 
     try {
-      // In production this would be an absolute URL or proxy
-      const response = await axios.post('http://localhost:5000/api/analyze', { url });
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://verify-your-cart-api.vercel.app/api/analyze';
+      const response = await axios.post(apiUrl, { url });
       setResult(response.data);
       // Scroll to result
       setTimeout(() => {
