@@ -139,7 +139,7 @@ export const blogPosts: BlogPost[] = [
       <h2>Negative SEO on Competitors</h2>
       <p>The dark side goes both ways. Some sellers pay to have thousands of fake 1-star reviews flooded onto their competitor's listings, triggering automatic suspensions from the platform.</p>
     `
-  }
+  },
   {
     title: "Flipkart Fraud Check: Protecting Indian Shoppers",
     slug: "flipkart-fraud-check",
@@ -274,7 +274,7 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>We are entering an era of 'Autonomous Fraud'. Scammers are building agents that can automatically create stores, generate marketing, and respond to customers. The only way to stop an AI scammer is with an AI defender.</p>
     `
-  }
+  },
   {
     title: "Identifying Brushing Scams: Why You Got a Random Package",
     slug: "identifying-brushing-scams",
