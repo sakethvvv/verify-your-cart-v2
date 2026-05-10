@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Linkedin, Shield, Mail, Phone, MapPin } from 'lucide-react';
+import { Send, MessageCircle, Camera, Globe, Shield, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 import CartLogo from './CartLogo';
 
 const Footer = () => {
@@ -45,10 +45,10 @@ const Footer = () => {
               Verify Your Cart is an AI-powered platform dedicated to protecting consumers from e-commerce fraud, fake products, and deceptive seller practices.
             </p>
             <div style={{ display: 'flex', gap: '16px' }}>
-              <a href="#" className="social-link"><Twitter size={20} /></a>
-              <a href="#" className="social-link"><Facebook size={20} /></a>
-              <a href="#" className="social-link"><Instagram size={20} /></a>
-              <a href="#" className="social-link"><Linkedin size={20} /></a>
+              <a href="#" className="social-link" title="Twitter"><Send size={20} /></a>
+              <a href="#" className="social-link" title="Facebook"><MessageCircle size={20} /></a>
+              <a href="#" className="social-link" title="Instagram"><Camera size={20} /></a>
+              <a href="#" className="social-link" title="LinkedIn"><Globe size={20} /></a>
             </div>
           </div>
 

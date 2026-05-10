@@ -1,4 +1,4 @@
-import { Target, Users, Shield, Award, Mail, Github, Heart } from 'lucide-react';
+import { Target, Users, Shield, Award, Mail, Code, Heart } from 'lucide-react';
 
 export default function AboutPage() {
   return (
@@ -76,7 +76,7 @@ export default function AboutPage() {
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
             <a href="mailto:contact@verifyyourcart.com" className="btn btn-primary"><Mail size={18} /> Get in Touch</a>
-            <a href="#" className="btn" style={{ background: 'var(--bg-color)', border: '1px solid var(--card-border)' }}><Github size={18} /> View Open Source</a>
+            <a href="#" className="btn" style={{ background: 'var(--bg-color)', border: '1px solid var(--card-border)' }}><Code size={18} /> View Open Source</a>
           </div>
         </div>
       </section>
