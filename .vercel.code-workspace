@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": ".vercel"
+		},
+		{
+			"path": "client"
+		},
+		{
+			"path": "extension"
+		},
+		{
+			"path": "presentation"
+		},
+		{
+			"path": "scratch"
+		},
+		{
+			"path": "server"
+		}
+	]
+}
