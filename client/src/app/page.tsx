@@ -1,3 +1,4 @@
+"use client";
 import Scanner from '@/components/Scanner';
 import { Shield, Zap, Lock, Eye, AlertCircle, TrendingUp, Users, Check, HelpCircle, ArrowRight, Star, Award, ShieldAlert, BadgeCheck } from 'lucide-react';
 import Link from 'next/link';
