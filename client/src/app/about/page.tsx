@@ -75,7 +75,7 @@ export default function AboutPage() {
             Verify Your Cart started as a university project and has grown into a community-led movement for a safer internet. We are 100% independent and self-funded.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
-            <a href="mailto:contact@verifyyourcart.com" className="btn btn-primary"><Mail size={18} /> Get in Touch</a>
+            <a href="mailto:verifyyourcart@gmail.com" className="btn btn-primary"><Mail size={18} /> Get in Touch</a>
             <a href="#" className="btn" style={{ background: 'var(--bg-color)', border: '1px solid var(--card-border)' }}><Code size={18} /> View Open Source</a>
           </div>
         </div>

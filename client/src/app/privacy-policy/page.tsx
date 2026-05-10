@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
             </ul>
 
             <h2>7. Contact Us</h2>
-            <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at privacy@verifyyourcart.com.</p>
+            <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at verifyyourcart@gmail.com.</p>
           </div>
         </div>
       </section>

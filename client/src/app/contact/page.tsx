@@ -66,8 +66,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '4px' }}>Email Us</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>support@verifyyourcart.com</p>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>security@verifyyourcart.com</p>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>verifyyourcart@gmail.com</p>
                 </div>
               </div>
 
@@ -87,8 +86,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '4px' }}>Headquarters</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Virtual First Initiative</p>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Bangalore, KA, India</p>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Surampalem</p>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Andhra Pradesh, India</p>
                 </div>
               </div>
 
