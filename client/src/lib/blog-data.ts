@@ -16,7 +16,7 @@ export const blogPosts: BlogPost[] = [
     date: "May 10, 2026",
     author: "Saketh V",
     category: "Safety Guides",
-    image: "/hero.png",
+    image: "/blog-hero.png",
     excerpt: "Learn the advanced techniques used by experts to identify counterfeit listings before you buy.",
     content: `
       <p>Shopping online has never been easier, but it has also never been more dangerous. Counterfeiters have become extremely sophisticated, using high-quality images, fake reviews, and legitimate-looking seller profiles to deceive even the most cautious shoppers.</p>
@@ -281,7 +281,7 @@ export const blogPosts: BlogPost[] = [
     date: "March 5, 2026",
     author: "Security Team",
     category: "Scam Alerts",
-    image: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?auto=format&fit=crop&q=80&w=1000",
+    image: "/brushing.png",
     excerpt: "Understanding the mechanics of one of the most common e-commerce rating manipulation tactics.",
     content: `
       <p>Brushing is a technique used by e-commerce sellers to boost their ratings. They send a cheap, unsolicited item (like a hair tie or cheap seeds) to a random person, using the tracking number to create a 'Verified Purchase' review for themselves.</p>
@@ -329,7 +329,7 @@ export const blogPosts: BlogPost[] = [
     date: "February 15, 2026",
     author: "Market Analyst",
     category: "Education",
-    image: "https://images.unsplash.com/photo-1534452285072-c81b2f5d9363?auto=format&fit=crop&q=80&w=1000",
+    image: "/dropshipping.png",
     excerpt: "Identifying low-quality dropshipping stores that overcharge for products found elsewhere for cents.",
     content: `
       <p>Many 'boutique' stores on social media are just dropshipping operations from sites like AliExpress. While not always a scam, they often have long shipping times and no real customer support.</p>
@@ -389,7 +389,7 @@ export const blogPosts: BlogPost[] = [
     date: "January 20, 2026",
     author: "Market Analyst",
     category: "Scam Alerts",
-    image: "https://images.unsplash.com/photo-1512418490979-92798ccc13b0?auto=format&fit=crop&q=80&w=1000",
+    image: "/holiday-scams.png",
     excerpt: "Analyzing the predictable patterns of fraud during Black Friday, Christmas, and Diwali.",
     content: `
       <p>Fraudsters love the holidays as much as shoppers do. The high volume of legit sales provides the perfect cover for 'flash' scam sites that exist only for a few days of peak traffic.</p>

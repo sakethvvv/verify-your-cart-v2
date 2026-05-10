@@ -1,4 +1,4 @@
-import { Chrome, Shield, Zap, Download, CheckCircle, Smartphone, Globe, Lock } from 'lucide-react';
+import { Monitor, Shield, Zap, Download, CheckCircle, Smartphone, Globe, Lock } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ExtensionPage() {
@@ -10,7 +10,7 @@ export default function ExtensionPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '80px', alignItems: 'center' }}>
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '99px', color: 'var(--accent-blue)', fontSize: '0.9rem', fontWeight: 700, marginBottom: '24px' }}>
-                <Chrome size={18} /> Available for Chrome & Edge
+                <Monitor size={18} /> Available for Chrome & Edge
               </div>
               <h1 style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '24px', lineHeight: 1.1 }}>
                 Security <span className="gradient-text">On Autopilot</span>
@@ -95,7 +95,7 @@ export default function ExtensionPage() {
             Join thousands of smart shoppers who use Verify Your Cart to prevent fraud every single day.
           </p>
           <button className="btn btn-primary" style={{ padding: '16px 48px', fontSize: '1.1rem' }}>
-            <Chrome size={20} /> Install Free Extension
+            <Monitor size={20} /> Install Free Extension
           </button>
         </div>
       </section>
