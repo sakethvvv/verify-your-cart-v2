@@ -1,16 +1,7 @@
 const axios = require('axios');
 
 async function scrapeProduct(url) {
-  // --- HIGH ACCURACY DEMO OVERRIDE ---
-  // To ensure 99% accuracy for your demo product,
-  // we bypass the bot-block by providing the exact extracted live data for this ASIN.
-  if (url.includes('B0CXY8Y9RF') || url.includes('daiDokoro')) {
-    return {
-      title: "daiDokoro Stainless Steel 4 Insulated Container Lunch Box Set with Thermal Bag",
-      content: "Price: ₹3,599. Customer reviews: 3.8 out of 5 stars. 101 global ratings. Breakdown: 5 star (56%), 4 star (17%), 3 star (4%), 2 star (3%), 1 star (20%). Customers say: Customers find the lunch box well-made and appreciate its stylish design. The temperature retention and leak-proof features receive mixed feedback - while some say it keeps food warm and is leak-proof, others report that food doesn't stay warm and isn't leak-proof. Value for money opinions are divided. Seller is verified."
-    };
-  }
-  // -----------------------------------
+  // Scraper logic
 
   try {
     const SCRAPER_API_KEY = process.env.SCRAPER_API_KEY;

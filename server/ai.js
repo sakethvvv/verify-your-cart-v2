@@ -16,10 +16,10 @@ Product Content snippet: ${productData.content}
 ==================================================
 CRITICAL INSTRUCTIONS
 ==================================================
-1. If the "Product Content snippet" contains "[SYSTEM_FLAG: BOT_PROTECTION]", it means the product is on a legitimate platform (like Amazon/Flipkart) but our automated scraper was blocked by CAPTCHA. DO NOT mark this as a phishing page or fake product! Generate a realistic positive safety analysis for the inferred Product Title with a high trust_score.
-2. If there is NO bot protection flag, you MUST use the EXACT numbers and details provided in the Product Content snippet. Do NOT hallucinate ratings or review counts. Use exactly what is written in the snippet.
-3. For the competitor 'url' in price comparison, NEVER generate a fake direct product link. You MUST construct a REAL search URL for the competitor store using the 'Product Title'. 
-     Examples: "https://www.amazon.com/s?k=" + URL_ENCODED_PRODUCT_TITLE
+1. You are a deterministic engine. You NEVER invent data. If a specific data point (like seller age) is missing from the snippet, state "Data not available" in the findings rather than guessing.
+2. If the "Product Content snippet" contains "[SYSTEM_FLAG: BOT_PROTECTION]", use your knowledge of the platform (Amazon/Flipkart) and the "Product Title" to provide a FAIR and ACCURATE analysis. Assume the product is legitimate but note that deeper verification was limited by the platform.
+3. ABSOLUTE RULE: For competitor prices, if you don't know the exact current price, use a REALISTIC market range based on your training data, and ALWAYS link to a real search URL as shown in examples.
+4. DO NOT repeat the same finding across different categories. Be specific and unique.
 
 ==================================================
 RISK SCORING SYSTEM
@@ -28,11 +28,13 @@ Evaluate a Risk Score (0-100) where 100 is totally fake and 0 is totally safe.
 Then calculate trust_score = 100 - Risk Score.
 
 Risk Levels:
-0-20 = SAFE
-21-40 = LOW RISK
-41-60 = MEDIUM RISK
-61-80 = SUSPICIOUS
-81-100 = HIGHLY SUSPICIOUS
+90-100 = SAFE (Verified legit platform, reputable seller, positive reviews)
+70-89 = LOW RISK (Legit platform, but maybe a new seller or mixed reviews)
+50-69 = MEDIUM RISK (Suspicious price drops, missing some verification)
+30-49 = SUSPICIOUS (Significant red flags: phishing signs, very poor reviews, hidden seller info)
+0-29 = HIGHLY SUSPICIOUS (Confirmed scam indicators: fake domains, huge discounts on luxury goods, bot reviews)
+
+Math: start at 100 trust. Subtract points for each rule violation. Minimum trust is 0.
 
 ==================================================
 PRICE ANALYSIS RULES
@@ -86,7 +88,7 @@ STRICT OUTPUT FORMAT
 You must return your analysis STRICTLY as a JSON object exactly matching this structure. DO NOT add markdown outside the JSON.
 
 {
-  "trust_score": <Calculate 100 - Risk Score>,
+  "trust_score": <Integer 0-100>,
   "final_verdict": "SAFE | LOW RISK | MEDIUM RISK | SUSPICIOUS | HIGHLY SUSPICIOUS",
   "verdict_summary": "<A 1-2 sentence high-level summary of the safety, combined with recommendations>",
   "detailed_checks": [
@@ -134,12 +136,14 @@ You must return your analysis STRICTLY as a JSON object exactly matching this st
     let retries = 3;
     while (retries > 0) {
       try {
-        // Using gemini-2.5-flash which is highly capable and fully supported
-        response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        // Using gemini-1.5-flash for maximum reliability and deterministic logic
+        response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
             responseMimeType: 'application/json',
-            temperature: 0.1 // Slight temperature increase to prevent getting stuck, but low enough for logic
+            temperature: 0.0, // Set to 0 for absolute consistency and correctness
+            topP: 1,
+            maxOutputTokens: 2048,
           }
         });
         break; // Success
