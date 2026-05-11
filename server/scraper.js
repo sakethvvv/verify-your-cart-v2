@@ -24,7 +24,7 @@ async function scrapeProduct(url) {
       // FALLBACK: Use Jina AI Reader
       const response = await axios.get(`https://r.jina.ai/${url}`, {
         headers: { 'Accept': 'text/plain' },
-        timeout: 15000
+        timeout: 8000
       });
       markdownText = response.data;
       const titleMatch = markdownText.match(/^Title:\s*(.+)$/m);

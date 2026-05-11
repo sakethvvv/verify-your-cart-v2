@@ -129,15 +129,18 @@ You must return your analysis STRICTLY as a JSON object exactly matching this st
 }
 `;
 
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyBwgG6XP5pxU6WDx7pyl0FOEJ-QTGagsiY';
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+    if (!GEMINI_API_KEY) {
+      throw new Error('GEMINI_API_KEY environment variable is not set.');
+    }
 
     // Connect to Google Gemini API with Retry for 503 errors
     let response;
-    let retries = 3;
+    let retries = 2;
     while (retries > 0) {
       try {
-        // Using gemini-1.5-flash for maximum reliability and deterministic logic
-        response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        // Using gemini-2.5-flash-lite for fast, deterministic analysis within serverless time limits
+        response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`, {
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
             responseMimeType: 'application/json',
@@ -145,12 +148,12 @@ You must return your analysis STRICTLY as a JSON object exactly matching this st
             topP: 1,
             maxOutputTokens: 2048,
           }
-        });
+        }, { timeout: 9000 });
         break; // Success
       } catch (err) {
         if (err.response?.status === 503 && retries > 1) {
           console.log('Gemini 503 error, retrying...');
-          await new Promise(res => setTimeout(res, 2000));
+          await new Promise(res => setTimeout(res, 1000));
           retries--;
         } else {
           throw err;
@@ -158,14 +161,32 @@ You must return your analysis STRICTLY as a JSON object exactly matching this st
       }
     }
 
-    const resultText = response.data.candidates[0].content.parts[0].text;
+    // Gemini 2.5 Flash is a thinking model - it returns multiple parts:
+    // a "thought" part and the actual content part. We need the last text part.
+    const parts = response.data.candidates[0].content.parts;
+    let resultText = '';
+    for (const part of parts) {
+      if (part.text) {
+        resultText = part.text; // Keep overwriting - last text part has the JSON
+      }
+    }
+
+    console.log('AI response text (first 200 chars):', resultText.substring(0, 200));
 
     // Attempt to parse JSON
     try {
       const parsed = JSON.parse(resultText);
       return parsed;
     } catch (parseError) {
-      console.error('Failed to parse Ollama response as JSON', resultText);
+      // Try to extract JSON from the text if it's wrapped in markdown or extra content
+      const jsonMatch = resultText.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        try {
+          const parsed = JSON.parse(jsonMatch[0]);
+          return parsed;
+        } catch (e) { /* fall through to fallback */ }
+      }
+      console.error('Failed to parse AI response as JSON', resultText);
       // Fallback
       return {
         trust_score: 50,
