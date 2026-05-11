@@ -4,6 +4,7 @@ const cors = require('cors');
 const Redis = require('ioredis');
 const { scrapeProduct } = require('./scraper');
 const { analyzeWithAI } = require('./ai');
+const { logScan, getRecentScans } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +27,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => res.json({ status: 'online', service: 'Verify Your Cart Backend' }));
+
+app.get('/api/recent-scans', async (req, res) => {
+  const scans = await getRecentScans(6);
+  res.json(scans);
+});
 
 app.post('/api/analyze', async (req, res) => {
   const { url } = req.body;
@@ -64,8 +70,8 @@ app.post('/api/analyze', async (req, res) => {
       await redis.set(url, JSON.stringify(finalResult), 'EX', 86400);
     }
 
-    // 5. TODO: Log to Supabase for the "Scam Radar" dashboard
-    // await logToSupabase(url, finalResult);
+    // 5. Log to Supabase for the "Scam Radar" dashboard
+    logScan(url, finalResult);
 
     res.json(finalResult);
 

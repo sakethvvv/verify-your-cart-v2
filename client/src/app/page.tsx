@@ -1,9 +1,29 @@
-"use client";
+import { useState, useEffect } from 'react';
 import Scanner from '@/components/Scanner';
-import { Shield, Zap, Lock, Eye, AlertCircle, TrendingUp, Users, Check, HelpCircle, ArrowRight, Star, Award, ShieldAlert, BadgeCheck } from 'lucide-react';
+import { Shield, Zap, Lock, Eye, AlertCircle, TrendingUp, Users, Check, HelpCircle, ArrowRight, Star, Award, ShieldAlert, BadgeCheck, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
+  const [recentScans, setRecentScans] = useState<any[]>([]);
+  const [loadingScans, setLoadingScans] = useState(true);
+
+  useEffect(() => {
+    async function fetchScans() {
+      try {
+        const res = await fetch('https://verify-your-cart-v2.onrender.com/api/recent-scans');
+        const data = await res.json();
+        if (Array.isArray(data)) setRecentScans(data);
+      } catch (err) {
+        console.error('Failed to fetch scans', err);
+      } finally {
+        setLoadingScans(false);
+      }
+    }
+    fetchScans();
+    const interval = setInterval(fetchScans, 30000); // Update every 30s
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="home-wrapper">
       {/* Hero Section */}
@@ -246,6 +266,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Scam Radar Section */}
       <section className="section-padding" style={{ background: 'rgba(239, 68, 68, 0.02)', borderTop: '1px solid rgba(239, 68, 68, 0.05)', borderBottom: '1px solid rgba(239, 68, 68, 0.05)' }}>
         <div className="container">
@@ -257,32 +278,33 @@ export default function Home() {
               </div>
               <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '24px' }}>Real-time Threat <br />Intelligence</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '32px' }}>
-                Our engine is constantly crawling the web, identifying new scam patterns and malicious domains before they can target you. Here are the most recent threats neutralized by our platform.
+                Our engine is constantly crawling the web, identifying new scam patterns and malicious domains before they can target you.
               </p>
               <Link href="/blog" className="btn btn-primary">View Global Threat Report</Link>
             </div>
             <div className="glass-panel" style={{ padding: '0', overflow: 'hidden' }}>
               <div style={{ padding: '20px 32px', borderBottom: '1px solid var(--card-border)', background: 'rgba(255,255,255,0.02)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>RECENTLY BLOCKED DOMAINS</span>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Updated: 2m ago</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>RECENT SECURITY SCANS</span>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Live Feed</span>
               </div>
               <div style={{ padding: '32px' }}>
-                {[
-                  { domain: "ama-zon-prime-deals.net", type: "Phishing", risk: "Critical" },
-                  { domain: "flipkart-lucky-draw.in", type: "Lottery Scam", risk: "High" },
-                  { domain: "best-buy-clearance.cc", type: "Bait & Switch", risk: "Critical" },
-                  { domain: "iphone15-giveaway.today", type: "Data Harvesting", risk: "Medium" }
-                ].map((scam, i) => (
-                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', borderBottom: i === 3 ? 'none' : '1px solid var(--card-border)' }}>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--danger)' }}>{scam.domain}</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{scam.type}</div>
+                {loadingScans ? (
+                  <div style={{ textAlign: 'center', padding: '40px' }}><Loader2 className="spin" /></div>
+                ) : recentScans.length > 0 ? (
+                  recentScans.map((scam, i) => (
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', borderBottom: i === recentScans.length - 1 ? 'none' : '1px solid var(--card-border)' }}>
+                      <div style={{ maxWidth: '70%' }}>
+                        <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{scam.title}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{new URL(scam.url).hostname}</div>
+                      </div>
+                      <div style={{ padding: '4px 12px', borderRadius: '4px', background: scam.trust_score < 40 ? 'rgba(239, 68, 68, 0.1)' : 'rgba(0, 229, 168, 0.1)', color: scam.trust_score < 40 ? 'var(--danger)' : 'var(--accent-green)', fontSize: '0.7rem', fontWeight: 800 }}>
+                        {scam.verdict}
+                      </div>
                     </div>
-                    <div style={{ padding: '4px 12px', borderRadius: '4px', background: scam.risk === 'Critical' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(245, 158, 11, 0.1)', color: scam.risk === 'Critical' ? 'var(--danger)' : 'var(--warning)', fontSize: '0.75rem', fontWeight: 700 }}>
-                      {scam.risk}
-                    </div>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>No recent scans found. Be the first to scan!</div>
+                )}
               </div>
             </div>
           </div>
