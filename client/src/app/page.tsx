@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchScans() {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://verify-your-cart-v2.onrender.com'}/api/recent-scans`);
+        const res = await fetch('https://verify-your-cart-v2.onrender.com/api/recent-scans');
         const data = await res.json();
         if (Array.isArray(data)) setRecentScans(data);
       } catch (err) {
@@ -52,9 +52,11 @@ export default function Home() {
             Verify Your Cart <br />
             <span className="gradient-text">Shop With Confidence</span>
           </h1>
+          
           <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '750px', margin: '0 auto 56px', lineHeight: 1.6 }}>
             The standard in digital shopping trust. We use multi-layered neural analysis to identify fraudulent sellers in milliseconds.
           </p>
+
           <Scanner />
         </div>
       </section>
@@ -73,7 +75,6 @@ export default function Home() {
                 The most recent threats identified by our AI engine. We track fraudulent domains and sellers 24/7.
               </p>
             </div>
-
             <div className="glass-panel" style={{ padding: '0', overflow: 'hidden' }}>
               <div style={{ padding: '20px 32px', borderBottom: '1px solid var(--card-border)', background: 'rgba(255,255,255,0.02)' }}>
                 <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>RECENT SECURITY SCANS</span>
