@@ -1,7 +1,5 @@
 const axios = require('axios');
 
-const axios = require('axios');
-
 /**
  * Main AI Analysis Engine with Failover Resilience
  */

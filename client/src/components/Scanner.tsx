@@ -20,7 +20,7 @@ const Scanner = () => {
     setResult(null);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://server-kappa-one-vjuhwrg6p4.vercel.app/api/analyze';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://verify-your-cart-v2.onrender.com/api/analyze';
       const response = await axios.post(apiUrl, { url });
       setResult(response.data);
       // Scroll to result

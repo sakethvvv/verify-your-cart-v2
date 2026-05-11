@@ -32,7 +32,7 @@ document.getElementById('scanBtn').addEventListener('click', async () => {
 
       // 3. Send the raw text directly to your Vercel Backend
       // REPLACE this URL with your production Vercel URL once you deploy the new backend endpoint!
-      const API_URL = 'https://verify-your-cart-v2.vercel.app/api/analyze-raw';
+      const API_URL = 'https://verify-your-cart-v2.onrender.com/api/analyze-raw';
       
       try {
         const response = await fetch(API_URL, {
